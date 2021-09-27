@@ -1,0 +1,36 @@
+Consultas
+
+ALTER
+alter table Retiro drop column monto;
+alter table retiro add check (porcentaje<=10);
+
+SELECT
+SQL
+select primer_nombre, primer_apellido from afiliado;
+select rut, primer_nombre, primer_apellido from afiliado join cuenta on afiliado.rut = cuenta.rut_afiliado;
+select rut, primer_nombre, primer_apellido from (afiliado join retiro on afiliado.rut = retiro.rut_afiliado) where monto >= 500000;
+
+Alebra relacional
+pi afiliado.rut, afiliado.primer_nombre, afiliado.primer_apellido σ afiliado.rut = cuenta.rut_afiliado (afiliado x cuenta)
+
+pi afiliado.rut, afiliado.primer_nombre, afiliado.primer_apellido σ afiliado.rut = retiro.rut_afiliado (afiliado x retiro)
+
+pi afiliado.rut, afiliado.primer_nombre, afiliado.primer_apellido σ monto >= 500000 (σ afiliado.rut= retiro.rut_afiliado (afiliado x retiro))
+
+
+UPDATE
+update afiliado set primer_nombre = 'Daniel' where rut = 20479539
+update afiliado set contrasena = 'uno2tres@' where n_documento = 111111;
+
+INSERT
+insert into afp values ('Plan Vital', 'afpplanvital@gmail.com','asdasd 123','600 6000 301');
+insert into direccion values('Av baquedano 1245',20479539);
+insert into telefono values('97745254',20479539);
+
+DELETE
+delete from telefono where rut_afiliado = 20479539;
+delete from direccion where rut_afiliado = 20479539;
+
+DROP
+drop table if exists retiro;
+
